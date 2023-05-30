@@ -4,7 +4,7 @@ interface Props {
   label: string;
   onClickHandler?: () => void;
   isActive?: boolean;
-  isDeleteHandler?: () => void;
+  onDeleteHandler?: () => void;
   padding?: string;
   margin?: string;
 }
@@ -13,7 +13,7 @@ const Chip = ({
   label,
   onClickHandler,
   isActive = false,
-  isDeleteHandler,
+  onDeleteHandler,
   padding = 'px-3 py-1.5',
   margin = '',
 }: Props) => {
@@ -25,8 +25,8 @@ const Chip = ({
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isDeleteHandler) {
-      isDeleteHandler();
+    if (onDeleteHandler) {
+      onDeleteHandler();
     }
   };
 
