@@ -3,19 +3,16 @@ import Tab from './Tab';
 
 interface TabSelectorProps {
   labels: string[];
-  isSelected: string;
+  selectedLabel: string;
   onChangeHandler: (label: string) => void;
 }
 
 const TabSelector: React.FC<TabSelectorProps> = ({
   labels,
-  isSelected,
+  selectedLabel,
   onChangeHandler,
 }) => {
-  const [selectedTab, setSelectedTab] = useState(isSelected);
-
   const handleTabClick = (label: string) => {
-    setSelectedTab(label);
     onChangeHandler(label);
   };
 
@@ -25,7 +22,7 @@ const TabSelector: React.FC<TabSelectorProps> = ({
         <Tab
           key={label}
           label={label}
-          isSelected={selectedTab === label}
+          isSelected={selectedLabel === label}
           onClick={() => handleTabClick(label)}
         />
       ))}
