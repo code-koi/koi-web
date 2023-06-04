@@ -1,46 +1,39 @@
 import React from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
+const ITMES = [
+  {
+    to: '/',
+    label: '홈',
+  },
+  {
+    to: '/mentoring',
+    label: '멘토링',
+  },
+  {
+    to: '/code-review',
+    label: '코드리뷰',
+  },
+];
 
 const SideBar = () => {
   return (
     <nav className="h-screen border-r">
       <ul>
-        <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `flex h-11 w-56 items-center border-l-2 py-1.5 pl-8 ${
-                isActive ? 'border-blue-500 bg-gray-200' : ''
-              }`
-            }
-          >
-            홈
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/mentoring"
-            className={({ isActive }) =>
-              `flex h-11 w-56 items-center border-l-2 py-1.5 pl-8 ${
-                isActive ? 'border-blue-500 bg-gray-200' : ''
-              }`
-            }
-          >
-            멘토링
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/code-review"
-            className={({ isActive }) =>
-              `flex h-11 w-56 items-center border-l-2 py-1.5 pl-8 ${
-                isActive ? 'border-blue-500 bg-gray-200' : ''
-              }`
-            }
-          >
-            코드리뷰
-          </NavLink>
-        </li>
+        {ITMES.map(({ to, label }) => (
+          <li>
+            <NavLink
+              to={to}
+              className={({ isActive }) =>
+                `flex h-11 w-56 items-center border-l-2 py-1.5 pl-8 ${
+                  isActive ? 'border-blue-500 bg-gray-200' : ''
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
