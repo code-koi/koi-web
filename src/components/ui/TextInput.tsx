@@ -13,7 +13,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       }
     };
 
-    const inputClasses = `border-b border-none px-2 py-1 focus:border-blue-500 ${width}`;
+    const inputClasses = `border-b px-2 py-1 outline-0 focus:border-blue-500 ${width}`;
 
     return (
       <input
