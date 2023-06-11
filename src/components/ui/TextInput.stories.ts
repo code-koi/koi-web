@@ -15,14 +15,12 @@ type Story = StoryObj<typeof meta>;
 export const TextInputBase: Story = {
   args: {
     value: 'value',
-    onChangeHandler: () => {},
   },
 };
 
 export const TextInputDisable: Story = {
   args: {
     value: 'value',
-    onChangeHandler: () => {},
     disabled: true,
   },
 };
@@ -30,7 +28,6 @@ export const TextInputDisable: Story = {
 export const TextInputWidthFull: Story = {
   args: {
     value: 'value',
-    onChangeHandler: () => {},
     width: 'w-full',
   },
 };
