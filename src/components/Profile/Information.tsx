@@ -12,7 +12,7 @@ const Information = () => {
 
   return (
     <div className="mx-10 flex-auto">
-      <div className="my-7 flex justify-center">
+      <div className="mb-7 flex justify-center">
         <div className="relative inline-flex">
           <img
             src="/images/profile_placeholder.png"
