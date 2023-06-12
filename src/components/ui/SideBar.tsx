@@ -18,7 +18,7 @@ const ITMES = [
 
 const SideBar = () => {
   return (
-    <nav className="h-screen border-r">
+    <nav className="h-auto border-r">
       <ul>
         {ITMES.map(({ to, label }) => (
           <li>
