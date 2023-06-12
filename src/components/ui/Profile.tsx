@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-interface Props {
+export interface Props {
   id: string;
   profileIMG?: string;
   link: string;
+  containerClassName?: string;
 }
 
 const DEFAULT_IMG_URL = '/images/profile_placeholder.png';
@@ -17,7 +18,10 @@ const Profile = (props: Props) => {
   };
 
   return (
-    <div className="flex items-center" onClick={moveProfile}>
+    <div
+      className={`flex items-center ${props.containerClassName || ''}`}
+      onClick={moveProfile}
+    >
       <img
         onError={(e) => {
           e.currentTarget.src = DEFAULT_IMG_URL;
@@ -26,7 +30,7 @@ const Profile = (props: Props) => {
         src={props.profileIMG}
         alt="profileIMG"
       />
-      <span className="ml-4">{props.id}</span>
+      <p className="text-l ml-4">{props.id}</p>
     </div>
   );
 };
