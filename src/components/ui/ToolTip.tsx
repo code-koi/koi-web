@@ -28,7 +28,9 @@ const Tooltip = ({ labelElement, tooltipElement }: Props) => {
       {isTooltipVisible && (
         <div className="z-100 absolute">
           <div
-            className={`${labelElement ? 'mt-2' : 'mb-2'} ${
+            className={`-left-1/2 -translate-x-1/2 transform ${
+              labelElement ? 'mt-2' : 'mb-2'
+            } ${
               window.innerHeight - window.pageYOffset < 200
                 ? 'bottom-0'
                 : 'top-0'
