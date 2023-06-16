@@ -7,10 +7,6 @@ const ITMES = [
     label: '홈',
   },
   {
-    to: '/mentoring',
-    label: '멘토링',
-  },
-  {
     to: '/code-review',
     label: '코드리뷰',
   },
