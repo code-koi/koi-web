@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import Chip from './Chip';
+import { VscSearch, VscCode } from 'react-icons/vsc';
 
 /*
   TODO : dummy 사용 x API요청을 통해 검색하도록 변경
@@ -83,14 +84,43 @@ const TechSearch = () => {
     isFocused ? 'opacity-100' : 'opacity-0 pointer-events-none'
   }`;
 
+  const content = (() => {
+    if (!debouncedSearchValue) {
+      return (
+        <p className="text-center font-medium text-neutral-500">
+          원하는 검색어를 입력해보세요.
+        </p>
+      );
+    } else if (!!debouncedSearchValue && !searchResults.length) {
+      return (
+        <p className="text-center font-medium text-neutral-500">
+          검색 결과가 없습니다.
+          <br />
+          다시 검색해보세요.
+        </p>
+      );
+    } else {
+      return searchResults.map((value) => (
+        <Chip
+          margin="mr-4 my-2"
+          label={value}
+          onClickHandler={() => {
+            console.log('test');
+          }}
+        />
+      ));
+    }
+  })();
+
   return (
     <div>
       <div className="relative">
-        <div className="relative z-10 border border-gray-300 bg-white px-4 py-2">
+        <div className="relative z-10 flex items-center border border-gray-300 bg-white px-4 py-2">
+          <VscSearch size={16} style={{ marginRight: '8px' }} color="#525252" />
           <input
             type="text"
             placeholder="직무스킬을 검색해보세요"
-            className="outline-0"
+            className="w-full outline-0"
             onClick={handleFocus}
             onChange={onChangeHandler}
             value={search}
@@ -98,15 +128,7 @@ const TechSearch = () => {
         </div>
         {isFocused && (
           <div className="absolute z-10 w-full rounded-b-lg bg-white px-4 py-2">
-            {searchResults.map((value) => (
-              <Chip
-                margin="mr-4 my-2"
-                label={value}
-                onClickHandler={() => {
-                  console.log('test');
-                }}
-              />
-            ))}
+            {content}
           </div>
         )}
         <div
