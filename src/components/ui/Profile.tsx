@@ -1,10 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { User } from '../../types/user';
 
-export interface Props {
-  id: string;
-  profileIMG?: string;
-  link: string;
+export interface Props extends User {
   containerClassName?: string;
 }
 
@@ -14,7 +12,7 @@ const Profile = (props: Props) => {
   const navigate = useNavigate();
 
   const moveProfile = () => {
-    navigate(props.link);
+    navigate(props.id);
   };
 
   return (
@@ -27,16 +25,16 @@ const Profile = (props: Props) => {
           e.currentTarget.src = DEFAULT_IMG_URL;
         }}
         className="h-7 w-7 rounded-full"
-        src={props.profileIMG}
+        src={props.profileImageUrl}
         alt="profileIMG"
       />
-      <p className="text-l ml-4">{props.id}</p>
+      <p className="text-l ml-4">{props.nickname}</p>
     </div>
   );
 };
 
 Profile.defaultProps = {
-  profileIMG: DEFAULT_IMG_URL,
+  profileImageUrl: DEFAULT_IMG_URL,
 };
 
 export default Profile;

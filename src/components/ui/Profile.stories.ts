@@ -16,24 +16,24 @@ type Story = StoryObj<typeof meta>;
 
 export const ProfileImageEmpty: Story = {
   args: {
-    id: 'example1',
-    link: '/profile/example1',
+    nickname: 'example1',
+    id: 1,
   },
 };
 
 export const ProfileImageError: Story = {
   args: {
-    id: 'example2',
-    link: '/profile/example2',
-    profileIMG: 'error',
+    profileImageUrl: 'error',
+    nickname: 'example2',
+    id: 2,
   },
 };
 
 export const ProfileImageLoaded: Story = {
   args: {
-    id: 'example3',
-    link: '/profile/example3',
-    profileIMG:
+    nickname: 'example3',
+    id: 3,
+    profileImageUrl:
       'https://k.kakaocdn.net/dn/3kvs9/btrHPeu3SVX/mk2efO7WsPvzvytL01bV1K/img_110x110.jpg',
   },
 };
