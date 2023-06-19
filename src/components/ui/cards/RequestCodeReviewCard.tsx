@@ -11,8 +11,7 @@ import { VscHeartFilled, VscHeart } from 'react-icons/vsc';
 interface Props extends ProfileProps {
   timestamp: string;
   title: string;
-  isResolved: boolean;
-  uid: string;
+  status: 'PENDING' | 'RESOLVED';
   isFavorite: boolean;
   hashTag?: string[];
   containerClassName?: string;
@@ -22,11 +21,11 @@ const HEART_COLOR = '#ef4444';
 
 const RequestCodeReviewCard = ({
   id,
-  profileIMG,
-  link,
+  profileImageUrl,
+  nickname,
   timestamp,
   title,
-  isResolved,
+  status,
   isFavorite,
   hashTag = [],
   containerClassName,
@@ -34,7 +33,11 @@ const RequestCodeReviewCard = ({
   return (
     <div className={containerClassName}>
       <div className="mb-5 flex items-center justify-between">
-        <Profile id={id} profileIMG={profileIMG} link={link} />
+        <Profile
+          id={id}
+          profileImageUrl={profileImageUrl}
+          nickname={nickname}
+        />
         <span className="text-zinc-400">{timestamp}</span>
       </div>
       <OutlineCard
@@ -42,7 +45,7 @@ const RequestCodeReviewCard = ({
           <div className="mb-4 flex">
             <p className="line-clamp-1 flex-1 text-ellipsis text-xl">{title}</p>
             <span className="min-w-[100px] text-right">
-              {isResolved ? '✅' : '❌'}
+              {status === 'RESOLVED' ? '✅' : '❌'}
             </span>
           </div>
         }

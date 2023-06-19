@@ -16,9 +16,8 @@ type Story = StoryObj<typeof meta>;
 
 export const ResponseCodeReviewCardBase: Story = {
   args: {
-    id: 'yuntaengtaeng',
-    link: '/test',
-    uid: 'testId1',
+    nickname: 'yuntaengtaeng',
+    id: 1,
     isKoiGuideVisible: true,
     comment: '글',
   },

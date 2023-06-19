@@ -10,15 +10,14 @@ import Tooltip from '../ToolTip';
 
 interface Props extends ProfileProps {
   comment: string;
-  uid: string;
   isKoiGuideVisible: boolean;
   containerClassName?: string;
 }
 
 const ResponseCodeReviewCard = ({
   id,
-  profileIMG,
-  link,
+  profileImageUrl,
+  nickname,
   comment,
   isKoiGuideVisible,
   containerClassName,
@@ -26,7 +25,11 @@ const ResponseCodeReviewCard = ({
   return (
     <div className={containerClassName}>
       <div className="mb-5 flex items-center justify-between">
-        <Profile id={id} profileIMG={profileIMG} link={link} />
+        <Profile
+          id={id}
+          profileImageUrl={profileImageUrl}
+          nickname={nickname}
+        />
 
         {isKoiGuideVisible && (
           <Tooltip

@@ -16,13 +16,12 @@ type Story = StoryObj<typeof meta>;
 
 export const RequestCodeReviewCardBase: Story = {
   args: {
-    id: 'yuntaengtaeng',
-    link: '/test',
-    title: '글 제목',
+    id: 1,
+    nickname: 'nickname',
     timestamp: '2시간 전',
-    isResolved: true,
-    uid: 'testId1',
+    title: 'title',
+    status: 'PENDING',
     isFavorite: false,
-    hashTag: ['JAVA', 'Spring boot'],
+    hashTag: ['JAVA'],
   },
 };
