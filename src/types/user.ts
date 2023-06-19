@@ -17,3 +17,9 @@ export interface Profile {
   activity: Activity;
   skills: Skill[];
 }
+
+export interface User {
+  profileImageUrl?: string;
+  id: number;
+  nickname: string;
+}
