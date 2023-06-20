@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const ITMES = [
+const ITEMS = [
   {
     to: '/',
     label: '홈',
@@ -16,8 +16,8 @@ const SideBar = () => {
   return (
     <nav className="h-auto border-r">
       <ul>
-        {ITMES.map(({ to, label }) => (
-          <li>
+        {ITEMS.map(({ to, label }) => (
+          <li key={to}>
             <NavLink
               to={to}
               className={({ isActive }) =>

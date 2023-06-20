@@ -102,6 +102,7 @@ const TechSearch = () => {
     } else {
       return searchResults.map((value) => (
         <Chip
+          key={value}
           margin="mr-4 my-2"
           label={value}
           onClickHandler={() => {
