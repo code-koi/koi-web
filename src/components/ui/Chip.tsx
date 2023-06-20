@@ -1,16 +1,20 @@
 import React from 'react';
 
+type ChipId = string | number;
+
 interface Props {
   label: string;
-  onClickHandler?: () => void;
+  id: ChipId;
+  onClickHandler?: (id: ChipId) => void;
   isActive?: boolean;
-  onDeleteHandler?: () => void;
+  onDeleteHandler?: (id: ChipId) => void;
   padding?: string;
   margin?: string;
 }
 
 const Chip = ({
   label,
+  id,
   onClickHandler,
   isActive = false,
   onDeleteHandler,
@@ -19,14 +23,14 @@ const Chip = ({
 }: Props) => {
   const handleClick = () => {
     if (onClickHandler) {
-      onClickHandler();
+      onClickHandler(id);
     }
   };
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (onDeleteHandler) {
-      onDeleteHandler();
+      onDeleteHandler(id);
     }
   };
 
