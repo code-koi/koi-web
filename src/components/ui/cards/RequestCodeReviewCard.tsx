@@ -2,6 +2,7 @@ import React from 'react';
 import Profile, { Props as ProfileProps } from '../Profile';
 import OutlineCard from '../OutlineCard';
 import { VscHeartFilled, VscHeart } from 'react-icons/vsc';
+import { useNavigate } from 'react-router-dom';
 
 /*
     TODO : uid를 활용하여 onClick 구현 필요
@@ -9,6 +10,7 @@ import { VscHeartFilled, VscHeart } from 'react-icons/vsc';
 */
 
 interface Props extends ProfileProps {
+  reviewId: number;
   timestamp: string;
   title: string;
   status: 'PENDING' | 'RESOLVED';
@@ -20,6 +22,7 @@ interface Props extends ProfileProps {
 const HEART_COLOR = '#ef4444';
 
 const RequestCodeReviewCard = ({
+  reviewId,
   id,
   profileImageUrl,
   nickname,

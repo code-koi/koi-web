@@ -16,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const RequestCodeReviewCardBase: Story = {
   args: {
+    reviewId: 1,
     id: 1,
     nickname: 'nickname',
     timestamp: '2시간 전',
