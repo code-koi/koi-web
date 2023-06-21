@@ -1,74 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import RequestCodeReviewCard from '../../ui/cards/RequestCodeReviewCard';
-
-const dummyData = [
-  {
-    id: 'yuntaengtaeng',
-    link: '/test',
-    title: '글 제목',
-    timestamp: '2시간 전',
-    isResolved: true,
-    uid: 'testId1',
-    isFavorite: false,
-    hashTag: ['JAVA', 'Spring boot'],
-    profileImg:
-      'https://code-koi.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2023-06-06+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+2.31.35.png',
-  },
-  {
-    id: 'yuntaengtaeng',
-    link: '/test',
-    title: '글 제목',
-    timestamp: '2시간 전',
-    isResolved: true,
-    uid: 'testId3',
-    isFavorite: false,
-    hashTag: ['JAVA', 'Spring boot'],
-    profileImg:
-      'https://code-koi.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2023-06-06+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+2.31.35.png',
-  },
-  {
-    id: 'yuntaengtaeng',
-    link: '/test',
-    title: '글 제목',
-    timestamp: '2시간 전',
-    isResolved: true,
-    uid: 'testId2',
-    isFavorite: false,
-    hashTag: ['JAVA', 'Spring boot'],
-    profileImg:
-      'https://code-koi.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2023-06-06+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+2.31.35.png',
-  },
-  {
-    id: 'yuntaengtaeng',
-    link: '/test',
-    title: '글 제목',
-    timestamp: '2시간 전',
-    isResolved: true,
-    uid: 'testId4',
-    isFavorite: false,
-    hashTag: ['JAVA', 'Spring boot'],
-    profileImg:
-      'https://code-koi.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2023-06-06+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+2.31.35.png',
-  },
-  {
-    id: 'yuntaengtaeng',
-    link: '/test',
-    title: '글 제목',
-    timestamp: '2시간 전',
-    isResolved: true,
-    uid: 'testId5',
-    isFavorite: false,
-    hashTag: ['JAVA', 'Spring boot'],
-    profileImg:
-      'https://code-koi.s3.ap-northeast-2.amazonaws.com/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2023-06-06+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+2.31.35.png',
-  },
-];
+import axios from 'axios';
+import { Review } from '../../../types/review';
 
 const RequestCodeReviewTab = () => {
+  const [list, setList] = useState<Review[]>([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const {
+        data: { reviews },
+      } = await axios.get<{ reviews: Review[] }>('/api/code-reviews?userId=2');
+      setList(reviews);
+    };
+
+    fetch();
+  }, []);
+
   return (
     <div className="mt-4 grid grid-cols-3 gap-4">
-      {dummyData.map((data) => (
-        <RequestCodeReviewCard containerClassName="" {...data} />
+      {list.map((data) => (
+        <RequestCodeReviewCard
+          reviewId={data.reviewId}
+          {...data.user}
+          timestamp={data.createdAt}
+          title={data.title}
+          isFavorite={false}
+          status={data.status}
+          hashTag={data.skills}
+        />
       ))}
     </div>
   );
