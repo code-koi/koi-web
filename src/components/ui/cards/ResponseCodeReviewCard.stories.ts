@@ -20,5 +20,6 @@ export const ResponseCodeReviewCardBase: Story = {
     id: 1,
     isKoiGuideVisible: true,
     comment: '글',
+    reviewId: 1,
   },
 };

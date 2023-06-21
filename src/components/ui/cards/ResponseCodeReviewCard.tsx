@@ -9,17 +9,21 @@ import Tooltip from '../ToolTip';
 */
 
 interface Props extends ProfileProps {
+  reviewId: number;
   comment: string;
-  isKoiGuideVisible: boolean;
+  isKoiGuideVisible?: boolean;
+  koiGuideContent?: React.ReactNode;
   containerClassName?: string;
 }
 
 const ResponseCodeReviewCard = ({
   id,
+  reviewId,
   profileImageUrl,
   nickname,
   comment,
   isKoiGuideVisible,
+  koiGuideContent = '코이를 지급 할 수 있어요',
   containerClassName,
 }: Props) => {
   return (
@@ -34,9 +38,7 @@ const ResponseCodeReviewCard = ({
         {isKoiGuideVisible && (
           <Tooltip
             labelElement={'🐟'}
-            tooltipElement={
-              <div className="w-max">코이를 지급 할 수 있어요</div>
-            }
+            tooltipElement={<div className="w-max">{koiGuideContent}</div>}
           />
         )}
       </div>
