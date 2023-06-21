@@ -1,21 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextArea from '../ui/TextArea';
 import Button from '../ui/Button';
 import Chip from '../ui/Chip';
 import TechSearch from '../ui/TechSearch';
 
 import { VscDeviceCamera } from 'react-icons/vsc';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { Profile } from '../../types/user';
+import useDeviceType from '../../hooks/useDeviceType';
 
 const Information = () => {
-  const [introduce, setIntroduce] = useState('');
-  const [techStack, setTechStack] = useState<string[]>(['React', 'Vue']);
+  const { id } = useParams();
+  const [profileData, setProfileData] = useState<Profile | null>(null);
+  const type = useDeviceType();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!id) {
+        return;
+      }
+
+      const { data } = await axios.get<Profile>(`/api/users/${id}`);
+      setProfileData(data);
+    };
+
+    fetchProfile();
+  }, [id]);
+
+  if (!profileData) {
+    return null;
+  }
+
+  const className = type === 'Web' ? 'mx-10 w-1/3' : 'mx-4';
 
   return (
-    <div className="mx-10 flex-auto">
+    <div className={className}>
       <div className="mb-7 flex justify-center">
         <div className="relative inline-flex">
           <img
-            src="/images/profile_placeholder.png"
+            src={
+              profileData.profileImageUrl || '/images/profile_placeholder.png'
+            }
             className="h-20 w-20 rounded-full"
             alt="profileImg"
           />
@@ -34,12 +60,14 @@ const Information = () => {
             <li className="flex items-center border-b border-gray-200 py-4">
               <p className="min-w-[120px] text-base font-medium">이메일</p>
               <p className="flex-1 text-ellipsis text-base">
-                dbsxo360@naver.com
+                {profileData.email}
               </p>
             </li>
             <li className="flex items-center">
               <p className="min-w-[120px] py-4 text-base font-medium">닉네임</p>
-              <p className="flex-1 text-ellipsis text-base">yuntaengtaeng</p>
+              <p className="flex-1 text-ellipsis text-base">
+                {profileData.nickname}
+              </p>
             </li>
           </ul>
         </div>
@@ -53,7 +81,9 @@ const Information = () => {
               <p className="min-w-[120px] text-base font-medium">
                 코드리뷰 활동 수
               </p>
-              <p className="flex-1 text-ellipsis text-base">120</p>
+              <p className="flex-1 text-ellipsis text-base">
+                {profileData.activity.codeReview}
+              </p>
             </li>
           </ul>
         </div>
@@ -66,7 +96,16 @@ const Information = () => {
             <li className="flex items-center border-b border-gray-200 py-4">
               <p className="min-w-[120px] text-base font-medium">연차</p>
               <p className="flex-1 text-ellipsis text-base">
-                <select className="w-full outline-none">
+                <select
+                  className="w-full outline-none"
+                  value={profileData.years}
+                  onChange={(event) => {
+                    setProfileData({
+                      ...profileData,
+                      years: Number(event.target.value),
+                    });
+                  }}
+                >
                   {[...new Array(11)].map((_, i) => (
                     <option key={i} value={i}>
                       {i}년차
@@ -79,14 +118,20 @@ const Information = () => {
               <p className="min-w-[120px] py-4 text-base font-medium">
                 기술 스택
               </p>
-              <p className="flex-1 text-ellipsis text-base">
-                <TechSearch />
-              </p>
+              <div className="flex-1 text-ellipsis text-base">
+                {profileData.me && <TechSearch />}
+              </div>
             </li>
             <li>
               <div className="my-4">
-                {techStack.map((stack) => (
-                  <Chip margin="mr-2" label={stack} isActive={true} />
+                {profileData.skills.map((stack) => (
+                  <Chip
+                    id={stack.id}
+                    margin="mr-2"
+                    key={stack.id}
+                    label={stack.name}
+                    isActive={true}
+                  />
                 ))}
               </div>
             </li>
@@ -99,17 +144,28 @@ const Information = () => {
           </p>
           <ul className="my-4">
             <li className="flex items-center py-4">
-              <TextArea
-                className="h-64 w-full"
-                value={introduce}
-                onChange={(value) => {
-                  setIntroduce(introduce);
-                }}
-              />
+              {profileData.me ? (
+                <TextArea
+                  className="h-64 w-full"
+                  value={profileData.introduce || ''}
+                  onChange={(value) => {
+                    setProfileData({ ...profileData, introduce: value });
+                  }}
+                />
+              ) : (
+                <p className="whitespace-pre-line">
+                  {profileData.introduce || ''}
+                </p>
+              )}
             </li>
           </ul>
         </div>
       </div>
+      {profileData.me && (
+        <Button onClick={() => {}} className="w-full">
+          저장
+        </Button>
+      )}
     </div>
   );
 };
