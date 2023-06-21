@@ -103,6 +103,7 @@ const TechSearch = () => {
       return searchResults.map((value) => (
         <Chip
           key={value}
+          id={value}
           margin="mr-4 my-2"
           label={value}
           onClickHandler={() => {
