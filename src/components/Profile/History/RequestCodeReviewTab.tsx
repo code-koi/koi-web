@@ -21,6 +21,7 @@ const RequestCodeReviewTab = () => {
     <div className="mt-4 grid grid-cols-3 gap-4">
       {list.map((data) => (
         <RequestCodeReviewCard
+          key={data.reviewId}
           reviewId={data.reviewId}
           {...data.user}
           timestamp={data.createdAt}
