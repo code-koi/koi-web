@@ -1,22 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
-const ITEMS = [
-  {
-    to: '/',
-    label: '홈',
-  },
-  {
-    to: '/code-review',
-    label: '코드리뷰',
-  },
-];
+import { NAV_ITEMS } from '../../constants/nav';
 
 const SideBar = () => {
   return (
     <nav className="h-auto border-r">
       <ul>
-        {ITEMS.map(({ to, label }) => (
+        {NAV_ITEMS.map(({ to, label }) => (
           <li key={to}>
             <NavLink
               to={to}
