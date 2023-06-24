@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 import '../src/index.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
 
 const preview: Preview = {
   parameters: {
