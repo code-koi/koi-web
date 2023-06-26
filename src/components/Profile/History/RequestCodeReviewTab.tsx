@@ -10,7 +10,7 @@ const RequestCodeReviewTab = () => {
     const fetch = async () => {
       const {
         data: { reviews },
-      } = await axios.get<{ reviews: Review[] }>('/api/code-reviews?userId=2');
+      } = await axios.get<{ reviews: Review[] }>('/api/users/2/reviews');
       setList(reviews);
     };
 

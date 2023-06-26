@@ -10,9 +10,7 @@ const ResponseCodeReviewTab = () => {
     const fetch = async () => {
       const {
         data: { comments },
-      } = await axios.get<{ comments: Comment[] }>(
-        '/api/code-comments?userId=2'
-      );
+      } = await axios.get<{ comments: Comment[] }>('/api/users/2/comments');
       setList(comments);
     };
 
