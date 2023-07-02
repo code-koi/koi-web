@@ -1,6 +1,6 @@
 import React from 'react';
 
-type Theme = 'GREEN' | 'ORANGE' | 'PINK';
+type Theme = 'GREEN' | 'ORANGE' | 'PINK' | 'PURPLE';
 
 interface Props {
   label: string;
@@ -16,6 +16,8 @@ const Tag = ({ label, theme }: Props) => {
         return ['text-ORANGE', 'bg-LIGHT_ORANGE'];
       case 'PINK':
         return ['text-PINK', 'bg-LIGHT_PINK'];
+      case 'PURPLE':
+        return ['text-PURPLE', 'bg-B300'];
     }
   })();
 
