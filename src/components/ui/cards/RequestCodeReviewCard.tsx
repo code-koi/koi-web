@@ -1,8 +1,7 @@
 import React from 'react';
 import Profile, { Props as ProfileProps } from '../Profile';
-import OutlineCard from '../OutlineCard';
-import { VscHeartFilled, VscHeart } from 'react-icons/vsc';
 import { useNavigate } from 'react-router-dom';
+import Tag from '../Tag';
 
 /*
     TODO : uid를 활용하여 onClick 구현 필요
@@ -35,46 +34,33 @@ const RequestCodeReviewCard = ({
 }: Props) => {
   return (
     <div className={containerClassName}>
-      <div className="mb-5 flex items-center justify-between">
+      <div className="mb-5">
         <Profile
           id={id}
           profileImageUrl={profileImageUrl}
           nickname={nickname}
         />
-        <span className="text-zinc-400">{timestamp}</span>
       </div>
-      <OutlineCard
-        topElement={
-          <div className="mb-4 flex">
-            <p className="line-clamp-1 flex-1 text-ellipsis text-xl">{title}</p>
-            <span className="min-w-[100px] text-right">
-              {status === 'RESOLVED' ? '✅' : '❌'}
-            </span>
-          </div>
-        }
-        bottomElement={
-          <div className="flex">
-            <p className="line-clamp-1 flex-1 text-ellipsis text-base text-neutral-600">
-              {hashTag.map((v) => `#${v}`).join(' ')}
-            </p>
-            <span className="min-w-[100px]">
-              {isFavorite ? (
-                <VscHeartFilled
-                  style={{ marginLeft: 'auto' }}
-                  size={24}
-                  color={HEART_COLOR}
-                />
-              ) : (
-                <VscHeart
-                  style={{ marginLeft: 'auto' }}
-                  size={24}
-                  color={HEART_COLOR}
-                />
-              )}
-            </span>
-          </div>
-        }
-      />
+      <div className="rounded-3xl bg-B50 px-5 py-4">
+        <div className="flex border-b border-purple-300 pb-3">
+          <p className="line-clamp-1 flex-1 text-ellipsis text-base font-bold">
+            {title}
+          </p>
+          <span className="min-w-[70px] text-right">
+            <Tag
+              theme={status === 'RESOLVED' ? 'GREEN' : 'PINK'}
+              label={`${status === 'RESOLVED' ? '해결' : '미해결'}`}
+            />
+          </span>
+        </div>
+        <p className="mt-6 line-clamp-1 flex-1 text-ellipsis text-base text-B700">
+          {hashTag.map((v) => `#${v}`).join(' ')}
+        </p>
+        <div className="mt-5 flex items-center justify-between">
+          <p className="text-sm text-B400">{timestamp}</p>
+          <Tag label="즐겨찾기" theme={isFavorite ? 'ORANGE' : 'GRAY'} />
+        </div>
+      </div>
     </div>
   );
 };
