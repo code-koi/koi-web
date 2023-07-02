@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile, { Props as ProfileProps } from '../Profile';
-import OutlineCard from '../OutlineCard';
 import Tooltip from '../ToolTip';
+import LikeCount from '../LikeCount';
 
 /*
     TODO : uid를 활용하여 onClick 구현 필요
@@ -14,6 +14,8 @@ interface Props extends ProfileProps {
   isKoiGuideVisible?: boolean;
   koiGuideContent?: React.ReactNode;
   containerClassName?: string;
+  count: number;
+  isLiked?: boolean;
 }
 
 const ResponseCodeReviewCard = ({
@@ -25,10 +27,12 @@ const ResponseCodeReviewCard = ({
   isKoiGuideVisible,
   koiGuideContent = '코이를 지급 할 수 있어요',
   containerClassName,
+  count,
+  isLiked,
 }: Props) => {
   return (
     <div className={containerClassName}>
-      <div className="mb-5 flex items-center justify-between">
+      <div className="flex items-center justify-between bg-PURPLE p-3">
         <Profile
           id={id}
           profileImageUrl={profileImageUrl}
@@ -42,13 +46,10 @@ const ResponseCodeReviewCard = ({
           />
         )}
       </div>
-      <OutlineCard
-        topElement={
-          <div className="mb-4 flex">
-            <p className="text-l whitespace-pre-line">{comment}</p>
-          </div>
-        }
-      />
+      <div className="p-3">
+        <p className="mb-4 text-base font-medium">{comment}</p>
+        <LikeCount isLiked={isLiked} count={count} />
+      </div>
     </div>
   );
 };

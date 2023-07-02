@@ -21,5 +21,6 @@ export const ResponseCodeReviewCardBase: Story = {
     isKoiGuideVisible: true,
     comment: '글',
     reviewId: 1,
+    count: 3,
   },
 };
