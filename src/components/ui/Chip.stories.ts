@@ -27,6 +27,5 @@ export const ActiveChip: Story = {
     label: 'ActiveChip',
     isActive: true,
     onClickHandler: () => {},
-    onDeleteHandler: () => {},
   },
 };
