@@ -4,11 +4,11 @@ import Button from '../ui/Button';
 import Chip from '../ui/Chip';
 import TechSearch from '../ui/TechSearch';
 
-import { VscDeviceCamera } from 'react-icons/vsc';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Profile } from '../../types/user';
 import useDeviceType from '../../hooks/useDeviceType';
+import Tag from '../ui/Tag';
 
 const Information = () => {
   const { id } = useParams();
@@ -36,68 +36,55 @@ const Information = () => {
 
   return (
     <div className={className}>
-      <div className="mb-7 flex justify-center">
-        <div className="relative inline-flex">
-          <img
-            src={
-              profileData.profileImageUrl || '/images/profile_placeholder.png'
-            }
-            className="h-20 w-20 rounded-full"
-            alt="profileImg"
-          />
-          <div className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-full bg-blue-500">
-            <VscDeviceCamera size={16} color="white" />
-          </div>
-        </div>
-      </div>
       <div>
-        <div className="mb-7 border border-gray-300 bg-white px-4">
-          <p className="my-5 text-xl">계정 관리</p>
-          <p className="my-4 text-base text-gray-700">
-            서비스에서 사용하는 내 계정 정보를 관리할 수 있습니다.
-          </p>
+        <div className="mb-7 rounded-3xl bg-white p-7 shadow-lg">
+          <Tag theme="PURPLE" label="내 정보" />
           <ul className="my-4">
-            <li className="flex items-center border-b border-gray-200 py-4">
-              <p className="min-w-[120px] text-base font-medium">이메일</p>
+            <li className="mb-4">
+              <p className="mb-2 text-base font-medium">프로필 사진</p>
+              <img
+                src={
+                  profileData.profileImageUrl ||
+                  '/images/profile_placeholder.png'
+                }
+                className="h-24 w-24 rounded-full"
+                alt="profileImg"
+              />
+            </li>
+
+            <li className="mb-4">
+              <p className="mb-2 text-base font-medium">이메일</p>
               <p className="flex-1 text-ellipsis text-base">
                 {profileData.email}
               </p>
             </li>
-            <li className="flex items-center">
-              <p className="min-w-[120px] py-4 text-base font-medium">닉네임</p>
+            <li className="">
+              <p className="mb-2 text-base font-medium">닉네임</p>
               <p className="flex-1 text-ellipsis text-base">
                 {profileData.nickname}
               </p>
             </li>
           </ul>
         </div>
-        <div className="mb-7 border border-gray-300 bg-white px-4">
-          <p className="my-5 text-xl">활동 내역</p>
-          <p className="my-4 text-base text-gray-700">
-            사용자의 활동내역을 확인 할 수 있습니다.
-          </p>
+        <div className="mb-7 rounded-3xl bg-white p-7 shadow-lg">
+          <Tag theme="PURPLE" label="활동내역" />
           <ul className="my-4">
-            <li className="flex items-center py-4">
-              <p className="min-w-[120px] text-base font-medium">
-                코드리뷰 활동 수
-              </p>
+            <li className="">
+              <p className="mb-2 text-base font-medium">코드리뷰 활동 수</p>
               <p className="flex-1 text-ellipsis text-base">
                 {profileData.activity.codeReview}
               </p>
             </li>
           </ul>
         </div>
-        <div className="mb-7 border border-gray-300 bg-white px-4">
-          <p className="my-5 text-xl">업무 및 스킬</p>
-          <p className="my-4 text-base text-gray-700">
-            사용자의 기술 스택 및 연차를 관리할 수 있습니다.
-          </p>
+        <div className="mb-7 rounded-3xl bg-white p-7 shadow-lg">
+          <Tag theme="PURPLE" label="업무 및 스킬" />
           <ul className="my-4">
-            <li className="flex items-center border-b border-gray-200 py-4">
-              <p className="min-w-[120px] text-base font-medium">연차</p>
+            <li className="mb-4">
+              <p className="mb-2 text-base font-medium">연차</p>
               <p className="flex-1 text-ellipsis text-base">
                 <select
-                  className="w-full outline-none"
+                  className="w-full p-0 text-left outline-none"
                   value={profileData.years}
                   onChange={(event) => {
                     setProfileData({
@@ -114,10 +101,8 @@ const Information = () => {
                 </select>
               </p>
             </li>
-            <li className="flex items-center border-b border-gray-200 ">
-              <p className="min-w-[120px] py-4 text-base font-medium">
-                기술 스택
-              </p>
+            <li className="flex items-center">
+              <p className="mb-2 py-4 text-base font-medium">기술 스택</p>
               <div className="flex-1 text-ellipsis text-base">
                 {profileData.me && <TechSearch />}
               </div>
@@ -137,13 +122,10 @@ const Information = () => {
             </li>
           </ul>
         </div>
-        <div className="mb-7 border border-gray-300 bg-white px-4">
-          <p className="my-5 text-xl">자기 소개</p>
-          <p className="my-4 text-base text-gray-700">
-            사용자의 자기소개를 작성 할 수 있습니다.
-          </p>
+        <div className="mb-7 rounded-3xl bg-white p-7 shadow-lg">
+          <Tag theme="PURPLE" label="자기소개" />
           <ul className="my-4">
-            <li className="flex items-center py-4">
+            <li className="">
               {profileData.me ? (
                 <TextArea
                   className="h-64 w-full"
