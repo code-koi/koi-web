@@ -17,4 +17,5 @@ export interface Comment {
   reviewId: number;
   content: string;
   koiType?: KoiType;
+  likeCount: number;
 }
