@@ -31,7 +31,6 @@ function App() {
             </Routes>
           </section>
         </div>
-        {deviceType === 'Web' ? <Footer /> : <MobileFooter />}
       </BrowserRouter>
     </>
   );
