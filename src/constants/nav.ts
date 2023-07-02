@@ -1,14 +1,14 @@
-import { VscHome, VscPreview } from 'react-icons/vsc';
+import { MdHome, MdCode } from 'react-icons/md';
 
 export const NAV_ITEMS = [
   {
     to: '/',
-    label: '홈',
-    Icon: VscHome,
+    label: 'Home',
+    Icon: MdHome,
   },
   {
     to: '/code-review',
-    label: '코드리뷰',
-    Icon: VscPreview,
+    label: 'CodeReview',
+    Icon: MdCode,
   },
 ];

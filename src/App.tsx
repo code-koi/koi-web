@@ -22,7 +22,6 @@ function App() {
       <BrowserRouter>
         <Header />
         <div className="flex flex-auto scrollbar-hide max-sm:overflow-scroll">
-          {deviceType === 'Web' && <SideBar />}
           <section className="w-full">
             <Routes>
               <Route path="/" element={<Home />} />
