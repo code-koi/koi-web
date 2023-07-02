@@ -2,21 +2,21 @@ import React from 'react';
 
 type ChipId = string | number;
 
-interface Props {
+interface Props<T extends ChipId> {
   label: string;
-  id: ChipId;
-  onClickHandler?: (id: ChipId) => void;
+  id: T;
+  onClickHandler?: (id: T) => void;
   isActive?: boolean;
   margin?: string;
 }
 
-const Chip = ({
+const Chip = <T extends ChipId>({
   label,
   id,
   onClickHandler,
   isActive = false,
   margin = '',
-}: Props) => {
+}: Props<T>) => {
   const handleClick = () => {
     if (onClickHandler) {
       onClickHandler(id);
