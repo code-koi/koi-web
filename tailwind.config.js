@@ -6,9 +6,11 @@ module.exports = {
       colors: {
         B50: '#F8F8FF',
         B100: '#F3F3FF',
+        B200: '#ECECFF',
         B300: '#DFDEFD',
         B400: '#BCBCD9',
         B500: '#9D9DB9',
+        B600: '#73748F',
         B700: '#5F607A',
         B900: '#1E2036',
         PURPLE: '#8E48FF',
