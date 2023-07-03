@@ -16,6 +16,7 @@ const ActivityFeed = () => {
       <ul>
         {dummy_data.map(({ text, day }, i) => (
           <li
+            key={text}
             className={`relative flex items-start pb-4 before:absolute before:bottom-0 before:left-[7.5px] before:top-0 before:bg-PURPLE before:content-[''] ${
               dummy_data.length !== i + 1 && 'before:w-px'
             }`}
