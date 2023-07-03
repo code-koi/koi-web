@@ -2,20 +2,23 @@ import React, { useState, useEffect } from 'react';
 import ResponseCodeReviewCard from '../../ui/cards/ResponseCodeReviewCard';
 import { Comment } from '../../../types/review';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const ResponseCodeReviewTab = () => {
   const [list, setList] = useState<Comment[]>([]);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetch = async () => {
       const {
         data: { comments },
-      } = await axios.get<{ comments: Comment[] }>('/api/users/2/comments');
+      } = await axios.get<{ comments: Comment[] }>(`/api/users/${id}/comments`);
+
       setList(comments);
     };
 
     fetch();
-  }, []);
+  }, [id]);
 
   return (
     <div className="mt-4 grid grid-cols-3 gap-4">
@@ -34,6 +37,8 @@ const ResponseCodeReviewTab = () => {
               />
             </>
           }
+          count={data.likeCount}
+          isLiked={false}
         />
       ))}
     </div>
