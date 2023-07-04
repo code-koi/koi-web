@@ -16,6 +16,7 @@ interface Props extends ProfileProps {
   containerClassName?: string;
   count: number;
   isLiked?: boolean;
+  isEllipsis?: boolean;
 }
 
 const ResponseCodeReviewCard = ({
@@ -29,6 +30,7 @@ const ResponseCodeReviewCard = ({
   containerClassName,
   count,
   isLiked,
+  isEllipsis,
 }: Props) => {
   return (
     <div className={containerClassName}>
@@ -47,7 +49,13 @@ const ResponseCodeReviewCard = ({
         )}
       </div>
       <div className="p-3">
-        <p className="mb-4 text-base font-medium">{comment}</p>
+        <p
+          className={`mb-4 ${
+            isEllipsis ? 'line-clamp-1 text-ellipsis' : ''
+          } text-base font-medium`}
+        >
+          {comment}
+        </p>
         <LikeCount isLiked={isLiked} count={count} />
       </div>
     </div>
