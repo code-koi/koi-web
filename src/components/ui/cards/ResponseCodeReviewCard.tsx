@@ -34,7 +34,7 @@ const ResponseCodeReviewCard = ({
 }: Props) => {
   return (
     <div className={containerClassName}>
-      <div className="flex items-center justify-between bg-PURPLE p-3">
+      <div className="flex items-center justify-between rounded-t bg-PURPLE p-3">
         <Profile
           id={id}
           profileImageUrl={profileImageUrl}
