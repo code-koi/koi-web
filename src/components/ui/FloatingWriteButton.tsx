@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MdAdd } from 'react-icons/md';
 
 interface Props {
   link: string;
@@ -10,15 +11,12 @@ const FloatingWriteButton = (props: Props) => {
 
   return (
     <div
-      className="fixed bottom-8 right-8 flex h-11"
+      className="fixed bottom-8 right-8 flex h-16 w-16 items-center justify-center rounded-full bg-B900"
       onClick={() => {
         navigate(props.link);
       }}
     >
-      <div className="flex h-11 w-max items-center rounded-full bg-white pr-4 shadow-xl">
-        <div className="flex h-11 w-11 items-center rounded-full bg-blue-500"></div>
-        <div className="px-3">글 쓰기</div>
-      </div>
+      <MdAdd size={32} className="fill-B50" />
     </div>
   );
 };
