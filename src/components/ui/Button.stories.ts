@@ -37,3 +37,10 @@ export const LargeButton: Story = {
     onClick: () => {},
   },
 };
+
+export const DisabledButton: Story = {
+  args: {
+    children: 'Button',
+    disabled: true,
+  },
+};

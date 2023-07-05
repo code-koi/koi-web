@@ -1,28 +1,28 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
-type Props = {
-  onClick?: () => void;
-  className?: string;
-  children: React.ReactNode;
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'medium' | 'large';
-};
+  children: React.ReactNode;
+  className?: string;
+}
 
-const Button: React.VFC<Props> = ({
+const Button = ({
   onClick,
   className = '',
   children,
   size = 'medium',
-}) => {
+  ...props
+}: Props) => {
   const sizeClasses = {
     small: 'py-1 px-2 text-sm',
     medium: 'py-2 px-4 text-base',
     large: 'py-3 px-6 text-lg',
   };
 
-  const classNames = `bg-blue-500 hover:bg-blue-700 active:bg-blue-700 active:opacity-50 text-white font-bold rounded ${sizeClasses[size]} ${className}`;
+  const classNames = `bg-PURPLE active:opacity-50 disabled:bg-B50 disabled:text-B900 text-white font-bold rounded ${sizeClasses[size]} ${className}`;
 
   return (
-    <button className={classNames.trim()} onClick={onClick}>
+    <button className={classNames.trim()} onClick={onClick} {...props}>
       {children}
     </button>
   );
