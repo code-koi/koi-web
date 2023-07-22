@@ -18,7 +18,6 @@ const ActivityFeed = () => {
       const {
         data: { logs },
       } = await axios.get<{ logs: Log[] }>(`/api/users/${id}/logs`);
-      console.log(logs);
       setLogs(logs);
     };
 
@@ -31,7 +30,7 @@ const ActivityFeed = () => {
       <ul>
         {logs.map(({ reviewId, log, createdAt }, i) => (
           <li
-            key={reviewId}
+            key={reviewId + log}
             className={`relative flex items-start pb-4 before:absolute before:bottom-0 before:left-[7.5px] before:top-0 before:bg-PURPLE before:content-[''] ${
               logs.length !== i + 1 && 'before:w-px'
             }`}
