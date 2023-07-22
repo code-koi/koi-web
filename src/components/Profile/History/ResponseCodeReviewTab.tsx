@@ -24,6 +24,7 @@ const ResponseCodeReviewTab = () => {
     <div className="mt-4 grid grid-cols-3 gap-4">
       {list.map((data) => (
         <ResponseCodeReviewCard
+          key={data.reviewId}
           {...data.user}
           reviewId={data.reviewId}
           comment={data.content}

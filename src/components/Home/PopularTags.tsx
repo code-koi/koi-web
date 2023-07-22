@@ -24,7 +24,13 @@ const PopularTags = () => {
       <p className="mb-9 text-center text-xl font-semibold">인기태그</p>
       <div className="flex flex-wrap">
         {tags.map(({ name, id }) => (
-          <Chip label={name} id={id} isActive={true} margin="mr-2 mt-2" />
+          <Chip
+            key={id}
+            label={name}
+            id={id}
+            isActive={true}
+            margin="mr-2 mt-2"
+          />
         ))}
       </div>
     </div>

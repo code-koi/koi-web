@@ -8,7 +8,7 @@ const comments = [
       nickname: '김선도',
       id: 2,
     },
-    reviewId: 2,
+    reviewId: 1,
     createdAt: '방금 전',
     content: '이 코드에서 생성자가 조금 이상합니다. 다시 확인해주세요.',
     koiType: 'FISHBOWL',
@@ -60,6 +60,7 @@ const Response = () => {
       <div className="grid grid-cols-4 gap-x-6">
         {comments.map((data) => (
           <ResponseCodeReviewCard
+            key={data.reviewId}
             {...data.user}
             reviewId={data.reviewId}
             comment={data.content}
