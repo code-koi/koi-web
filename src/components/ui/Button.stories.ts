@@ -44,3 +44,10 @@ export const DisabledButton: Story = {
     disabled: true,
   },
 };
+
+export const RoundedButton: Story = {
+  args: {
+    children: 'Button',
+    isRounded: true,
+  },
+};
