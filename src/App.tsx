@@ -6,8 +6,6 @@ import Header from './components/ui/Header';
 import Home from './pages/Home';
 import CodeReview from './pages/CodeReview';
 import Profile from './pages/Profile';
-import Footer from './components/ui/Footer';
-import MobileFooter from './components/ui/MobileFooter';
 import Login from './pages/Login';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
