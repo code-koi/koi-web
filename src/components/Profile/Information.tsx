@@ -144,7 +144,7 @@ const Information = () => {
         </div>
       </div>
       {profileData.me && (
-        <Button onClick={() => {}} className="w-full">
+        <Button onClick={() => {}} className="w-full" size="large" isRounded>
           저장
         </Button>
       )}
