@@ -23,8 +23,8 @@ const FavoriteCodeReviewTab = () => {
     <div className="mt-4 grid grid-cols-3 gap-4">
       {list.map((data) => (
         <RequestCodeReviewCard
-          key={data.reviewId}
-          reviewId={data.reviewId}
+          key={data.id}
+          reviewId={data.id}
           {...data.user}
           timestamp={data.createdAt}
           title={data.title}

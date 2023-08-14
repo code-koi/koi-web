@@ -3,7 +3,7 @@ import { User } from './user';
 export type KoiType = 'FISHBOWL' | 'STREAM' | 'RIVER' | 'SEA';
 
 export interface Review {
-  reviewId: number;
+  id: number;
   user: User;
   createdAt: string;
   title: string;

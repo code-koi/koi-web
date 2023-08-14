@@ -24,8 +24,8 @@ const Request = () => {
       <div className="grid grid-cols-4 gap-x-6">
         {codeReviews.map((data) => (
           <RequestCodeReviewCard
-            key={data.reviewId + data.title}
-            reviewId={data.reviewId}
+            key={data.id + data.title}
+            reviewId={data.id}
             {...data.user}
             timestamp={data.createdAt}
             title={data.title}
