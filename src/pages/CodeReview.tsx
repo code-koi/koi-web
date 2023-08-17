@@ -4,6 +4,7 @@ import RequestCodeReviewCard from '../components/ui/cards/RequestCodeReviewCard'
 import { Review } from '../types/review';
 import RankItem from '../components/ui/RankItem';
 import Profile from '../components/ui/Profile';
+import FloatingWriteButton from '../components/ui/FloatingWriteButton';
 
 const dummy_data: Review[] = [
   {
@@ -130,6 +131,7 @@ const CodeReview = () => {
           />
         ))}
       </div>
+      <FloatingWriteButton link="" />
     </div>
   );
 };
