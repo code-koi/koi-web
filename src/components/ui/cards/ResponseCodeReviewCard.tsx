@@ -48,7 +48,7 @@ const ResponseCodeReviewCard = ({
           />
         )}
       </div>
-      <div className="p-3">
+      <div className="bg-white p-3">
         <p
           className={`mb-4 ${
             isEllipsis ? 'line-clamp-1 text-ellipsis' : ''
