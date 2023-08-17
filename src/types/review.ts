@@ -11,11 +11,17 @@ export interface Review {
   skills: string[];
 }
 
+export interface ReviewDetail extends Review {
+  me: boolean;
+  content: string;
+}
+
 export interface Comment {
   user: User;
   createdAt: string;
-  reviewId: number;
+  id: number;
   content: string;
   koiType?: KoiType;
   likeCount: number;
+  liked?: boolean;
 }
