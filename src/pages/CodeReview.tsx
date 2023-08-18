@@ -6,6 +6,8 @@ import RankItem from '../components/ui/RankItem';
 import Profile from '../components/ui/Profile';
 import FloatingWriteButton from '../components/ui/FloatingWriteButton';
 
+type Filter = '해결' | '미해결' | '전체';
+
 const dummy_data: Review[] = [
   {
     id: 1,
@@ -83,7 +85,8 @@ const rank_dummy = [
 ];
 
 const CodeReview = () => {
-  const [status, setStatus] = useState<'해결' | '미해결'>('해결');
+  const [status, setStatus] = useState<Filter>('전체');
+  const filters: Filter[] = ['전체', '해결', '미해결'];
 
   return (
     <div className="mx-16">
@@ -99,23 +102,17 @@ const CodeReview = () => {
         <div className="flex-auto"></div>
       </div>
       <div className="my-8">
-        <Chip
-          label={'해결'}
-          id={'해결'}
-          isActive={status === '해결'}
-          margin="mr-2"
-          onClickHandler={() => {
-            setStatus('해결');
-          }}
-        />
-        <Chip
-          label={'미해결'}
-          id={'미해결'}
-          isActive={status === '미해결'}
-          onClickHandler={() => {
-            setStatus('미해결');
-          }}
-        />
+        {filters.map((label) => (
+          <Chip
+            label={label}
+            id={label}
+            isActive={status === label}
+            margin="mr-2"
+            onClickHandler={() => {
+              setStatus(label);
+            }}
+          />
+        ))}
       </div>
       <div className="grid grid-cols-4 gap-x-6">
         {dummy_data.map((data) => (
