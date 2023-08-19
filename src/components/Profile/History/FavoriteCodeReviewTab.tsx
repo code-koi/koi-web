@@ -12,7 +12,9 @@ const FavoriteCodeReviewTab = () => {
     const fetch = async () => {
       const {
         data: { reviews },
-      } = await axios.get<{ reviews: Review[] }>(`/api/users/${id}/favorite`);
+      } = await axios.get<{ reviews: Review[] }>(
+        `/api/users/${id}/favorite/reviews`
+      );
       setList(reviews);
     };
 
