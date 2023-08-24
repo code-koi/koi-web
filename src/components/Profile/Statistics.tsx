@@ -24,7 +24,7 @@ const Statistics = () => {
       refs.current.map((span) => (span ? span.offsetWidth : 0))
     );
     setMinWidth(max);
-  }, [refs]);
+  }, [refs, skillStatistics]);
 
   useEffect(() => {
     const fetch = async () => {
