@@ -9,11 +9,18 @@ import { useParams } from 'react-router-dom';
 import { Profile } from '../../types/user';
 import useDeviceType from '../../hooks/useDeviceType';
 import Tag from '../ui/Tag';
+import useTechSearch from '../../hooks/useTechSearch';
 
 const Information = () => {
   const { id } = useParams();
   const [profileData, setProfileData] = useState<Profile | null>(null);
   const type = useDeviceType();
+
+  const {
+    selectedTechs,
+    selectedTechIds,
+    handler: { onResetHandler, onTechSelect },
+  } = useTechSearch(profileData?.skills);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -101,15 +108,21 @@ const Information = () => {
                 </select>
               </p>
             </li>
-            <li className="flex items-center">
+            <li className="">
               <p className="mb-2 py-4 text-base font-medium">기술 스택</p>
               <div className="flex-1 text-ellipsis text-base">
-                {profileData.me && <TechSearch />}
+                {profileData.me && (
+                  <TechSearch
+                    selectedTechIds={selectedTechIds}
+                    onTechSelect={onTechSelect}
+                    onResetHandler={onResetHandler}
+                  />
+                )}
               </div>
             </li>
             <li>
               <div className="my-4">
-                {profileData.skills.map((stack) => (
+                {selectedTechs.map((stack) => (
                   <Chip
                     id={stack.id}
                     margin="mr-2"
