@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Chip from '../components/ui/Chip';
 import RequestCodeReviewCard from '../components/ui/cards/RequestCodeReviewCard';
 import { Review } from '../types/review';
 import RankItem from '../components/ui/RankItem';
 import Profile from '../components/ui/Profile';
 import FloatingWriteButton from '../components/ui/FloatingWriteButton';
+import TechSearch from '../components/ui/TechSearch';
+import { Skill } from '../types/user';
+import { VscSearch } from 'react-icons/vsc';
+import Search from '../components/CodeReview/Search';
+import axios from 'axios';
+import useTechSearch from '../hooks/useTechSearch';
 
 type Filter = '해결' | '미해결' | '전체';
 
@@ -87,6 +93,18 @@ const rank_dummy = [
 const CodeReview = () => {
   const [status, setStatus] = useState<Filter>('전체');
   const filters: Filter[] = ['전체', '해결', '미해결'];
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const {
+    selectedTechs,
+    selectedTechIds,
+    handler: { onResetHandler, onTechSelect },
+  } = useTechSearch();
+
+  const openSearchScreen = () => {
+    setIsSearchOpen(true);
+  };
 
   return (
     <div className="mx-16">
@@ -99,7 +117,29 @@ const CodeReview = () => {
             </RankItem>
           ))}
         </div>
-        <div className="flex-auto"></div>
+        <div className="flex-auto">
+          <div
+            className="mx-4 flex h-10 items-center rounded-lg bg-GRAY px-4"
+            onClick={openSearchScreen}
+          >
+            <VscSearch
+              size={24}
+              color={'#000'}
+              style={{ marginRight: '8px' }}
+            />
+            <span className="text-xl font-semibold">{searchQuery}</span>
+          </div>
+          <TechSearch
+            selectedTechIds={selectedTechIds}
+            onTechSelect={onTechSelect}
+            onResetHandler={onResetHandler}
+          />
+          <div className="flex flex-wrap gap-4">
+            {selectedTechs.map(({ name, id }) => (
+              <Chip key={name + id} id={id} label={name} isActive={true} />
+            ))}
+          </div>
+        </div>
       </div>
       <div className="my-8">
         {filters.map((label) => (
@@ -129,6 +169,16 @@ const CodeReview = () => {
         ))}
       </div>
       <FloatingWriteButton link="" />
+      {isSearchOpen && (
+        <Search
+          closeHandler={() => {
+            setIsSearchOpen(false);
+          }}
+          callbackSearch={(search = '') => {
+            setSearchQuery(search);
+          }}
+        />
+      )}
     </div>
   );
 };
