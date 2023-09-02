@@ -82,7 +82,17 @@ const Search = ({ closeHandler, callbackSearch }: Props) => {
           <div>
             <div className="flex flex-wrap gap-4">
               {searchHistory.map((query: string) => (
-                <Chip key={query} id={query} label={query} />
+                <Chip
+                  key={query}
+                  id={query}
+                  label={query}
+                  onClickHandler={() => {
+                    if (inputRef.current) {
+                      inputRef.current.value = query;
+                      handleEnterKeyPress();
+                    }
+                  }}
+                />
               ))}
             </div>
           </div>
