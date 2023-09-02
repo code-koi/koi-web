@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-10 flex h-14 min-h-[3.5rem] justify-around bg-B900 px-4">
+    <header className="sticky top-0 z-50 flex h-14 min-h-[3.5rem] justify-around bg-B900 px-4">
       <div className="flex items-center text-white">
         <Logo />
         <span className="ml-4">CODEKOI</span>
