@@ -4,7 +4,7 @@ import Comments from '../components/CodeReviewDetail/Comments';
 
 const CodeReviewDetail = () => {
   return (
-    <div className="flex h-full">
+    <div className="flex h-screen">
       <div className="flex-auto p-12">
         <ArticleInformation />
       </div>
