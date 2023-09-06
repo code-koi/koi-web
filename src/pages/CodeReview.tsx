@@ -12,6 +12,7 @@ import axios from 'axios';
 import useTechSearch from '../hooks/useTechSearch';
 import useScrollYPosition from '../hooks/useScrollYPosition';
 import useDidUpdate from '../hooks/useDidUpdate';
+import useElementVisibility from '../hooks/useElementVisibility';
 
 type Filter = 'PENDING' | 'RESOLVED' | 'ALL';
 
@@ -64,6 +65,9 @@ const CodeReview = () => {
   const hasNext = useRef(false);
   const lastId = useRef(0);
   const { percentage } = useScrollYPosition();
+  const [targetRef, isElementVisible] = useElementVisibility<HTMLDivElement>({
+    threshold: 0,
+  });
 
   const {
     selectedTechs,
@@ -114,8 +118,6 @@ const CodeReview = () => {
         lastId: number;
       }>(`/api/code-reviews?${query}`);
 
-      console.log(data);
-
       if (shouldResetList) {
         setReviews(data.list);
       } else {
@@ -145,80 +147,95 @@ const CodeReview = () => {
     }
   }, [percentage]);
 
-  return (
-    <div className="mx-16">
-      <div className="mt-8 flex rounded-3xl bg-white p-7 shadow-lg">
-        <div className="flex flex-auto flex-col items-center">
-          <h3 className="mb-4 text-2xl font-bold">이 달의 낚시왕</h3>
-          {rank_dummy.map((data, index) => (
-            <RankItem rank={index + 1} class="mb-4 w-1/2">
-              <Profile {...data} />
-            </RankItem>
+  const statusChips = () => {
+    return filters.map((filter) => (
+      <Chip
+        label={filter.label}
+        id={filter.id}
+        isActive={status === filter.id}
+        margin="mr-2"
+        onClickHandler={() => {
+          setStatus(filter.id);
+        }}
+      />
+    ));
+  };
+
+  const options = () => {
+    return (
+      <>
+        <div
+          className="mx-4 flex h-10 items-center rounded-lg bg-GRAY px-4"
+          onClick={openSearchScreen}
+        >
+          <VscSearch size={24} color={'#000'} style={{ marginRight: '8px' }} />
+          <span className="text-xl font-semibold">{searchQuery}</span>
+        </div>
+        <TechSearch
+          selectedTechIds={selectedTechIds}
+          onTechSelect={onTechSelect}
+          onResetHandler={onResetHandler}
+        />
+        <div className="flex flex-wrap gap-4 px-4">
+          {selectedTechs.map(({ name, id }) => (
+            <Chip key={name + id} id={id} label={name} isActive={true} />
           ))}
         </div>
-        <div className="flex-auto">
-          <div
-            className="mx-4 flex h-10 items-center rounded-lg bg-GRAY px-4"
-            onClick={openSearchScreen}
-          >
-            <VscSearch
-              size={24}
-              color={'#000'}
-              style={{ marginRight: '8px' }}
-            />
-            <span className="text-xl font-semibold">{searchQuery}</span>
-          </div>
-          <TechSearch
-            selectedTechIds={selectedTechIds}
-            onTechSelect={onTechSelect}
-            onResetHandler={onResetHandler}
-          />
-          <div className="flex flex-wrap gap-4 px-4">
-            {selectedTechs.map(({ name, id }) => (
-              <Chip key={name + id} id={id} label={name} isActive={true} />
+      </>
+    );
+  };
+
+  return (
+    <>
+      {!isElementVisible && (
+        <div className="sticky top-14 z-50 flex bg-white p-4 shadow-lg">
+          <div>{statusChips()}</div>
+          <div className="flex-auto">{options()}</div>
+        </div>
+      )}
+      <div className="mx-16">
+        <div
+          className="mt-8 flex rounded-3xl bg-white p-7 shadow-lg"
+          ref={targetRef}
+        >
+          <div className="flex flex-auto flex-col items-center">
+            <h3 className="mb-4 text-2xl font-bold">이 달의 낚시왕</h3>
+            {rank_dummy.map((data, index) => (
+              <RankItem rank={index + 1} class="mb-4 w-1/2">
+                <Profile {...data} />
+              </RankItem>
             ))}
           </div>
+          <div className="flex-auto">{options()}</div>
         </div>
-      </div>
-      <div className="my-8">
-        {filters.map((filter) => (
-          <Chip
-            label={filter.label}
-            id={filter.id}
-            isActive={status === filter.id}
-            margin="mr-2"
-            onClickHandler={() => {
-              setStatus(filter.id);
+        <div className="my-8">{statusChips()}</div>
+        <div className="grid grid-cols-4 gap-6">
+          {reviews.map((data) => (
+            <RequestCodeReviewCard
+              key={data.id + data.title}
+              reviewId={data.id}
+              {...data.user}
+              timestamp={data.createdAt}
+              title={data.title}
+              isFavorite={true}
+              status={data.status}
+              hashTag={data.skills}
+            />
+          ))}
+        </div>
+        <FloatingWriteButton link="" />
+        {isSearchOpen && (
+          <Search
+            closeHandler={() => {
+              setIsSearchOpen(false);
+            }}
+            callbackSearch={(search = '') => {
+              setSearchQuery(search);
             }}
           />
-        ))}
+        )}
       </div>
-      <div className="grid grid-cols-4 gap-6">
-        {reviews.map((data) => (
-          <RequestCodeReviewCard
-            key={data.id + data.title}
-            reviewId={data.id}
-            {...data.user}
-            timestamp={data.createdAt}
-            title={data.title}
-            isFavorite={true}
-            status={data.status}
-            hashTag={data.skills}
-          />
-        ))}
-      </div>
-      <FloatingWriteButton link="" />
-      {isSearchOpen && (
-        <Search
-          closeHandler={() => {
-            setIsSearchOpen(false);
-          }}
-          callbackSearch={(search = '') => {
-            setSearchQuery(search);
-          }}
-        />
-      )}
-    </div>
+    </>
   );
 };
 
