@@ -104,7 +104,7 @@ const CodeReview = () => {
           switch (k) {
             case 'skillIds':
               return (v as number[])
-                .map((skillId) => `skillId=${skillId}`)
+                .map((skillId) => `skillIds=${skillId}`)
                 .join('&');
             default:
               return `${k}=${v}`;
