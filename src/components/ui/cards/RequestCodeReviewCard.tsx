@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Tag from '../Tag';
 
 /*
-    TODO : uid를 활용하여 onClick 구현 필요
-    - 하트 클릭 시 좋아요 API 연결
+    TODO : 하트 클릭 시 좋아요 API 연결
 */
 
 interface Props extends ProfileProps {
@@ -17,8 +16,6 @@ interface Props extends ProfileProps {
   hashTag?: string[];
   containerClassName?: string;
 }
-
-const HEART_COLOR = '#ef4444';
 
 const RequestCodeReviewCard = ({
   reviewId,
@@ -32,6 +29,7 @@ const RequestCodeReviewCard = ({
   hashTag = [],
   containerClassName,
 }: Props) => {
+  const navigate = useNavigate();
   return (
     <div className={containerClassName}>
       <div className="mb-5">
@@ -41,7 +39,12 @@ const RequestCodeReviewCard = ({
           nickname={nickname}
         />
       </div>
-      <div className="rounded-3xl bg-B50 px-5 py-4">
+      <div
+        className="rounded-3xl bg-B50 px-5 py-4"
+        onClick={() => {
+          navigate(`/code-review/${reviewId}`);
+        }}
+      >
         <div className="flex border-b border-purple-300 pb-3">
           <p className="line-clamp-1 flex-1 text-ellipsis text-base font-bold">
             {title}
