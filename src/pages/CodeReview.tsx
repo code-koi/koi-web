@@ -178,7 +178,15 @@ const CodeReview = () => {
         />
         <div className="flex flex-wrap gap-4 px-4">
           {selectedTechs.map(({ name, id }) => (
-            <Chip key={name + id} id={id} label={name} isActive={true} />
+            <Chip
+              key={name + id}
+              id={id}
+              label={name}
+              isActive={true}
+              onClickHandler={() => {
+                onTechSelect({ name, id });
+              }}
+            />
           ))}
         </div>
       </>
