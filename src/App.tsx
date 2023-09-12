@@ -11,6 +11,7 @@ import CodeReviewDetail from './pages/CodeReviewDetail';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 import useDeviceType from './hooks/useDeviceType';
+import ScrollToTop from './components/ui/ScrollToTop';
 
 function App() {
   const deviceType = useDeviceType();
@@ -18,6 +19,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
         <div className="flex flex-auto scrollbar-hide max-sm:overflow-scroll">
           <section className="w-full">
