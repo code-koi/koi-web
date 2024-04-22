@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+![Frame 6777 (1)](https://github.com/code-koi/koi-web/assets/94745651/1549e3a7-c05c-45e1-9e6a-a53afe729fe0)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Code-Koi 소개
 
-## Available Scripts
+### **About Code-Koi**
 
-In the project directory, you can run:
+“코드 리뷰”에 대해서 알고 있으신가요? 회사를 통해 경험을 하고 있는 분들도 계시겠지만 회사에 “코드 리뷰”라는 문화가 존재하지 않아서 경험하지 못한 분들도 계실 겁니다.
 
-### `npm start`
+그런 분들의 갈증을 해결하기 위해 Code-Koi는 개발자들이 서로의 코드를 리뷰하고 피드백을 주고받을 수 있는 웹 플랫폼입니다. 이곳은 여러분의 코드가 다양한 관점과 경험을 통해 성장할 수 있는 공간입니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **Inspiration**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Code-Koi의 이름은 "koi" 물고기에서 영감을 받았습니다. Koi 물고기는 환경에 따라 그 크기가 달라지는데, 큰 물에서 놀수록 더욱 커집니다. 이처럼 Code-Koi는 다양한 코드와의 만남을 통해 여러분의 개발 능력이 성장할 수 있는 기회를 제공합니다. "여러 코드를 만나보면 너도 커질 것이다"라는 의미를 담고 있습니다.
 
-### `npm test`
+### **Features**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **코드 리뷰 요청**: 자신의 코드에 대해 리뷰를 요청하고 다른 사용자의 피드백을 받을 수 있습니다.
+- **리뷰 제공**: 다른 사용자의 코드를 리뷰하며, 당신의 경험과 지식을 공유할 수 있습니다.
 
-### `npm run build`
+### **Why Code-Koi?**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Code-Koi는 코드 리뷰 과정을 통해 다음과 같은 이점을 제공합니다:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **코드 품질 향상**: 다양한 피드백을 통해 코드의 품질을 지속적으로 개선할 수 있습니다.
+- **학습 및 성장**: 다른 개발자의 코드를 분석하고 리뷰하면서 새로운 기술과 방법을 배울 수 있습니다.
